@@ -35,7 +35,7 @@
 
 ## Get trained model
 
-Go to the [model zoom](), download the model file and uncompress it to output.
+Go to the [model zoom](https://pan.baidu.com/s/1iHdBTdyuTUcr4vX9N0exqg?pwd=1e2k), download the model file and uncompress it to output.
 
 ## Train
 python tools/train.py --cfg_file cfgs/rbhm/igevrbhm.py
