@@ -39,6 +39,30 @@ Go to the [model zoom](https://pan.baidu.com/s/1iHdBTdyuTUcr4vX9N0exqg?pwd=1e2k)
 
 ## Train
 python tools/train.py --cfg_file cfgs/rbhm/igevrbhm.py
+Train a model with a Single GPU
+```
+python tools/train.py --cfg_file cfgs/rbhm/rbhm.py
+```
+Multi-GPU Training on Single Node
+```
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+torchrun --nnodes=1 --nproc_per_node=8 --rdzv_backend=c10d --rdzv_endpoint=localhost:23456 tools/train.py --dist_mode --cfg_file cfgs/rbhm/rbhm.py
+```
+- `--config` The path to the config file.
+- `--dist_mode` If specified, the program will use DDP to train.
+- your exp will saved in '/save_root_dir/DATASET_NAME/MODEL_NAME/config_file_perfix/extra_tag', save_root_dir and extra_tag can specified in train argparse
+
+Train HeightPredict Moudle
+```
+python tools/train.py --cfg_file cfgs/rbhm/rbhm.py
+```
+
+Train through HeightPredict Moudle
+```
+python tools/train.py --cfg_file cfgs/rbhm/igevrbhm.py
+```
+you should change the HeightPredict Moudle path according to your path in the  cfgs/rbhm/igevrbhm.py
+
 
 ## Val
 
@@ -56,6 +80,7 @@ python tools/eval.py --cfg_file cfgs/rbhm/coexrbhm.py --pretrained_model "/file_
 - `--cfg_file` The path to the config file.
 - `--eval_data_cfg_file` The dataset config you want to eval.
 - `--pretrained_model` your pre-trained checkpoint
+- HeightPredict Moudle is the same as the one in train
 
 **Tip**: Other arguments are the same as the train phase.
 
