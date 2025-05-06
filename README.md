@@ -38,7 +38,7 @@
 Go to the [model zoom](), download the model file and uncompress it to output.
 
 ## Train
-
+python tools/train.py --cfg_file cfgs/rbhm/igevrbhm.py
 
 ## Val
 
