@@ -30,9 +30,27 @@
    pip install -r requirements.txt
    ```
 
-## Prepare dataset
-
-
+## Segmentation
+We use the [mmsegmentation](https://github.com/open-mmlab/mmsegmentation/blob/1.x/docs/en/get_started.md#installation)  for speedbump segmentation.
+```
+cd third_party/bisenet/mmsegmentation
+```
+1. install [mmsegmentation](https://github.com/open-mmlab/mmsegmentation/blob/1.x/docs/en/get_started.md#installation).
+    ```
+    pip install -U openmim https://pypi.tuna.tsinghua.edu.cn/simple
+    mim install mmengine
+    mim install "mmcv>=2.0.0rc1"
+    ```
+2. train [bisenetV2](https://github.com/open-mmlab/mmsegmentation/blob/1.x/docs/zh_cn/user_guides/4_train_test.md) model.
+    ```
+    bash tools/dist_train.sh configs/bisenetv2/bisenetv2_fcn_4xb4-160k_speedbump-1024x1024.py 8
+    ```
+3. infer 
+    ```
+    cd third_party/bisenet/
+    python ./test_bisenet.py bisenetv2_fcn_4xb4-160k_speedbump-1024x1024.py 8
+    python ./bump_postprocess.py
+    ```
 ## Get trained model
 
 Go to the [model zoom](https://pan.baidu.com/s/1iHdBTdyuTUcr4vX9N0exqg?pwd=1e2k), download the model file and uncompress it to output.
